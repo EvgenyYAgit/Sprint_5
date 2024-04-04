@@ -1,28 +1,40 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
+from description_of_elements import sauces_section, tab_sauces_section, fillings_section, tab_fillings_section, \
+    buns_section, tab_buns_section
 
 
-def test_transition_personal_area_constructor(site):
-    driver = webdriver.Chrome()
+site = "https://stellarburgers.nomoreparties.site/"
+
+
+def test_transition_sauces(start_browser):
+    driver = start_browser
     driver.get(site)
 
-    driver.find_element(By.XPATH, "//div[1]//nav/ul/li[1]/a/p").click()
-    element_bottle = driver.find_element(By.XPATH, "//div[1]//main/section[1]/div[2]/ul[1]/a[1]/p")
-    driver.execute_script("arguments[0].scrollIntoView();", element_bottle)
+    driver.find_element(By.XPATH, sauces_section).click()
 
-    assert 'Флюоресцентная булка R2-D3' == driver.find_element(By.XPATH,
-                                                               "//div[1]//main/section[1]/div[2]/ul[1]/a[1]/p").text
+    assert 'Соусы' == driver.find_element(By.CSS_SELECTOR, tab_sauces_section).text
 
-    element_sause = driver.find_element(By.XPATH,
-                                        "//div[1]/div/main/section[1]/div[2]/ul[2]/a[1]/p")
-    driver.execute_script("arguments[0].scrollIntoView();", element_sause)
+    driver.quit()
 
-    assert 'Соус Spicy-X' == driver.find_element(By.XPATH,
-                                                 "//div[1]/div/main/section[1]/div[2]/ul[2]/a[1]/p").text
 
-    element_chop = driver.find_element(By.XPATH,
-                                       "//div[1]//section[1]/div[2]/ul[3]/a[2]/p")
-    driver.execute_script("arguments[0].scrollIntoView();", element_chop)
+def test_transition_fillings(start_browser):
+    driver = start_browser
+    driver.get(site)
 
-    assert 'Говяжий метеорит (отбивная)' == driver.find_element(By.XPATH,
-                                                                "//div[1]//section[1]/div[2]/ul[3]/a[2]/p").text
+    driver.find_element(By.XPATH, fillings_section).click()
+
+    assert 'Начинки' == driver.find_element(By.CSS_SELECTOR, tab_fillings_section).text
+
+    driver.quit()
+
+
+def test_transition_buns(start_browser):
+    driver = start_browser
+    driver.get(site)
+
+    driver.find_element(By.XPATH, fillings_section).click()
+    driver.find_element(By.XPATH, buns_section).click()
+
+    assert 'Булки' in driver.find_element(By.CSS_SELECTOR, tab_buns_section).text
+
+    driver.quit()

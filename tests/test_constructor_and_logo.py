@@ -1,42 +1,46 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from description_of_elements import local_area_button, input_button, button_place_an_order, string_email_area_local, \
+    string_password_area_local, constructor_button, logo
 
 
-def test_transition_personal_area_constructor(login, password, site):
-    driver = webdriver.Chrome()
+login = "krysenkov_7008@gmail.com"
+password = "423567"
+site = "https://stellarburgers.nomoreparties.site/"
+
+
+def test_transition_personal_area_constructor(start_browser):
+    driver = start_browser
     driver.get(site)
 
-    driver.find_element(By.XPATH, "//div[1]//nav/a/p").click()
-    driver.find_element(By.NAME, 'name').send_keys(login)
-    driver.find_element(By.NAME, 'Пароль').send_keys(password)
-    driver.find_element(By.XPATH, '//div[1]//button').click()
-    WebDriverWait(driver, 5).until(
-        expected_conditions.element_to_be_clickable((By.XPATH, "//div[1]//section[2]//button")))
-    driver.find_element(By.XPATH, "//div[1]//nav/a/p").click()
-    WebDriverWait(driver, 5).until(
-        expected_conditions.element_to_be_clickable((By.XPATH, "//div[1]//nav/p")))
-    driver.find_element(By.XPATH, "//div[1]//nav/ul/li[1]/a/p").click()
+    driver.find_element(By.XPATH, local_area_button).click()
+    driver.find_element(By.XPATH, string_email_area_local).send_keys(login)
+    driver.find_element(By.XPATH, string_password_area_local).send_keys(password)
+    driver.find_element(By.XPATH, input_button).click()
+    driver.find_element(By.XPATH, local_area_button).click()
+    driver.find_element(By.XPATH, constructor_button).click()
+    WebDriverWait(driver, 3).until(
+        expected_conditions.element_to_be_clickable((By.XPATH, button_place_an_order)))
 
-    assert "Оформить заказ" == driver.find_element(By.XPATH, "//div[1]//section[2]//button").text
+    assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
+
     driver.quit()
 
 
-def test_transition_personal_area_logo(login, password, site):
-    driver = webdriver.Chrome()
+def test_transition_personal_area_logo(start_browser):
+    driver = start_browser
     driver.get(site)
 
-    driver.find_element(By.XPATH, "//div[1]//nav/a/p").click()
-    driver.find_element(By.NAME, 'name').send_keys(login)
-    driver.find_element(By.NAME, 'Пароль').send_keys(password)
-    driver.find_element(By.XPATH, '//div[1]//button').click()
-    WebDriverWait(driver, 5).until(
-        expected_conditions.element_to_be_clickable((By.XPATH, "//div[1]//section[2]//button")))
-    driver.find_element(By.XPATH, "//div[1]//nav/a/p").click()
-    WebDriverWait(driver, 5).until(
-        expected_conditions.element_to_be_clickable((By.XPATH, "//div[1]//nav/p")))
-    driver.find_element(By.CSS_SELECTOR, "[xmlns='http://www.w3.org/2000/svg'][width='290']").click()
+    driver.find_element(By.XPATH, local_area_button).click()
+    driver.find_element(By.XPATH, string_email_area_local).send_keys(login)
+    driver.find_element(By.XPATH, string_password_area_local).send_keys(password)
+    driver.find_element(By.XPATH, input_button).click()
+    WebDriverWait(driver, 3).until(
+        expected_conditions.element_to_be_clickable((By.XPATH, button_place_an_order)))
+    driver.find_element(By.XPATH, local_area_button).click()
+    driver.find_element(By.CSS_SELECTOR, logo).click()
 
-    assert "Оформить заказ" == driver.find_element(By.XPATH, "//div[1]//section[2]//button").text
+    assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
+
     driver.quit()

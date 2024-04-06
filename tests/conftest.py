@@ -20,4 +20,5 @@ def short_password():
 @pytest.fixture
 def start_browser():
     start_browser = webdriver.Chrome()
-    return start_browser
+    yield start_browser
+    start_browser.quit()

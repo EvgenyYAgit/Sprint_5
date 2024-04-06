@@ -25,7 +25,6 @@ def test_transition_personal_area_constructor(start_browser):
 
     assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
 
-    driver.quit()
 
 
 def test_transition_personal_area_logo(start_browser):
@@ -43,4 +42,3 @@ def test_transition_personal_area_logo(start_browser):
 
     assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
 
-    driver.quit()

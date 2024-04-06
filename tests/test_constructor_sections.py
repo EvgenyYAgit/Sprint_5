@@ -14,7 +14,6 @@ def test_transition_sauces(start_browser):
 
     assert 'Соусы' == driver.find_element(By.CSS_SELECTOR, tab_sauces_section).text
 
-    driver.quit()
 
 
 def test_transition_fillings(start_browser):
@@ -25,7 +24,6 @@ def test_transition_fillings(start_browser):
 
     assert 'Начинки' == driver.find_element(By.CSS_SELECTOR, tab_fillings_section).text
 
-    driver.quit()
 
 
 def test_transition_buns(start_browser):
@@ -37,4 +35,3 @@ def test_transition_buns(start_browser):
 
     assert 'Булки' in driver.find_element(By.CSS_SELECTOR, tab_buns_section).text
 
-    driver.quit()

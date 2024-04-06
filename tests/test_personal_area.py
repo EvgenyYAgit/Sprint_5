@@ -25,5 +25,3 @@ def test_transition_personal_area(start_browser):
         expected_conditions.element_to_be_clickable((By.XPATH, profile_button)))
 
     assert "Профиль" == driver.find_element(By.XPATH, profile_button).text
-
-    driver.quit()

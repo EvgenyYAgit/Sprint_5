@@ -29,4 +29,3 @@ def test_exit_account(start_browser):
 
     assert "Войти" == driver.find_element(By.XPATH, input_button).text
 
-    driver.quit()

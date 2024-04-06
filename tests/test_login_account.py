@@ -24,7 +24,6 @@ def test_login_account_button_login_to_account(start_browser):
 
     assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
 
-    driver.quit()
 
 
 def test_login_account_button_personal_area(start_browser):
@@ -40,7 +39,6 @@ def test_login_account_button_personal_area(start_browser):
 
     assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
 
-    driver.quit()
 
 
 def test_login_account_registration_form(start_browser):
@@ -58,7 +56,6 @@ def test_login_account_registration_form(start_browser):
 
     assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
 
-    driver.quit()
 
 
 def test_login_account_password_recovery_form(start_browser):
@@ -76,4 +73,3 @@ def test_login_account_password_recovery_form(start_browser):
 
     assert "Оформить заказ" == driver.find_element(By.XPATH, button_place_an_order).text
 
-    driver.quit()
